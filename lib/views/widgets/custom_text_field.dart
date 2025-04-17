@@ -6,7 +6,7 @@ class CustomFormTextField extends StatelessWidget {
 
   final void Function(String?)? onSaved;
   final int maxLines;
-  CustomFormTextField({
+  const CustomFormTextField({
     super.key,
     this.maxLines = 1,
     required this.hintText,
