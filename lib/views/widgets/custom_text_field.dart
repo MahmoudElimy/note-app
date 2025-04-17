@@ -2,31 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:noote_app/constats.dart';
 
 class CustomFormTextField extends StatelessWidget {
-  final String? hintText;
-  Function(String)? onChange;
-  bool obscureText;
-  int maxLines;
+  final String hintText;
+
+  final void Function(String?)? onSaved;
+  final int maxLines;
   CustomFormTextField({
     super.key,
     this.maxLines = 1,
-    this.onChange,
-    this.hintText,
-    this.obscureText = false,
+    required this.hintText,
+     this.onSaved,
+   
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSaved,
       maxLines: maxLines,
       cursorColor: kPrimaryColor,
-      obscureText: obscureText,
       validator: (data) {
-        if (data!.isEmpty) {
+        if (data?.isEmpty ?? true) {
           return 'Field is required';
         }
         return null;
       },
-      onChanged: onChange ?? (data) {},
       decoration: InputDecoration(
         hintStyle: TextStyle(color: kPrimaryColor),
         hintText: hintText,

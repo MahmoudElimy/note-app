@@ -5,7 +5,7 @@ class CustomButton extends StatelessWidget {
   final String text;
 
   CustomButton({super.key, this.onTap, required this.text});
-  VoidCallback? onTap;
+  void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
