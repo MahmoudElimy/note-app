@@ -3,18 +3,21 @@ import 'package:noote_app/constats.dart';
 
 class CustomFormTextField extends StatelessWidget {
   final String? hintText;
-
+  Function(String)? onChange;
+  bool obscureText;
+  int maxLines;
   CustomFormTextField({
     super.key,
+    this.maxLines = 1,
     this.onChange,
     this.hintText,
     this.obscureText = false,
   });
-  Function(String)? onChange;
-  bool obscureText;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       cursorColor: kPrimaryColor,
       obscureText: obscureText,
       validator: (data) {
