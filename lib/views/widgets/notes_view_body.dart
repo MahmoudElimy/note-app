@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noote_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:noote_app/views/widgets/custom_app_bar.dart';
 import 'package:noote_app/views/widgets/notes_list_view.dart';
 

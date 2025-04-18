@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'notes_cubit.dart';
 
 sealed class NotesCubitState extends Equatable {
@@ -9,4 +10,9 @@ sealed class NotesCubitState extends Equatable {
 
 class NotesInitial extends NotesCubitState {}
 
-
+class NoteSuccess extends NotesCubitState {
+  List<NoteModel> notes;
+  NoteSuccess({
+    required this.notes,
+  });
+}
