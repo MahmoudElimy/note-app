@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noote_app/cubits/notes_cubit/notes_cubit.dart';
+import 'package:noote_app/models/note_model.dart';
 import 'package:noote_app/views/widgets/custom_note_item.dart';
 
-class NotesListView extends StatelessWidget {
+class NotesListView extends StatefulWidget {
   const NotesListView({super.key});
 
   @override
+  State<NotesListView> createState() => _NotesListViewState();
+}
+
+class _NotesListViewState extends State<NotesListView> {
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: ListView.builder(
-        padding: EdgeInsets.zero,
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return const Padding(
-            padding: EdgeInsets.symmetric(vertical: 6),
-            child: CustomNoteItem(),
-          );
-        },
-      ),
+    return BlocBuilder<NotesCubit, NotesCubitState>(
+      builder: (context, state) {
+        List<NoteModel> notes =
+            BlocProvider.of<NotesCubit>(context).fetchAllNotes() ?? [];
+        print(notes.length);
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: notes.length,
+            itemBuilder: (context, index) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 6),
+                child: CustomNoteItem(),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

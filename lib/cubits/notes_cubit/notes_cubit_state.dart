@@ -1,4 +1,4 @@
-part of 'notes_cubit_cubit.dart';
+part of 'notes_cubit.dart';
 
 sealed class NotesCubitState extends Equatable {
   const NotesCubitState();
@@ -7,17 +7,6 @@ sealed class NotesCubitState extends Equatable {
   List<Object> get props => [];
 }
 
-final class NotesCubitInitial extends NotesCubitState {}
+class NotesInitial extends NotesCubitState {}
 
-final class NotesCubitLoading extends NotesCubitState {}
 
-final class NotesCubitSuccess extends NotesCubitState {
-  List<NoteModel> notes;
-  NotesCubitSuccess(this.notes);
-}
-
-final class NotesCubitfailure extends NotesCubitState {
-  final String errMessage;
-
-  NotesCubitfailure(this.errMessage);
-}
