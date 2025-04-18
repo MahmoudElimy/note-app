@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noote_app/constats.dart';
 import 'package:noote_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:noote_app/models/note_model.dart';
+import 'package:noote_app/views/widgets/color_item.dart';
+import 'package:noote_app/views/widgets/color_list_view.dart';
 import 'package:noote_app/views/widgets/custom_app_bar.dart';
 import 'package:noote_app/views/widgets/custom_text_field.dart';
+import 'package:noote_app/views/widgets/edit_note_color_listview.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
@@ -48,8 +52,10 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             hintText: widget.note.subTitle,
             maxLines: 5,
           ),
+          EditNoteColorList(note: widget.note),
         ],
       ),
     );
   }
 }
+

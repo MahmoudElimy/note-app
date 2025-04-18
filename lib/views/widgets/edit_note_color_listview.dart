@@ -1,37 +1,44 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noote_app/constats.dart';
-import 'package:noote_app/cubits/add_cubit/add_note_cubit.dart';
+import 'package:noote_app/models/note_model.dart';
 import 'package:noote_app/views/widgets/color_item.dart';
 
-class ColorsListView extends StatefulWidget {
-  const ColorsListView({super.key});
+class EditNoteColorList extends StatefulWidget {
+  const EditNoteColorList({super.key, required this.note});
+  final NoteModel note;
 
   @override
-  State<ColorsListView> createState() => _ColorsListViewState();
+  State<EditNoteColorList> createState() => _EditNoteColorListState();
 }
 
-class _ColorsListViewState extends State<ColorsListView> {
-  int currentIndex = 0;
-  
+class _EditNoteColorListState extends State<EditNoteColorList> {
+  late int currentIndex;
+
+  void initState() {
+    currentIndex = kColors.indexOf(Color(widget.note.color));
+    super.initState();
+  }
+
+  List<Color> colors = kColors;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 64,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: kColors.length,
+        itemCount: colors.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 4),
             child: GestureDetector(
               onTap: () {
                 currentIndex = index;
-                BlocProvider.of<AddNoteCubit>(context).color = kColors[index];
+                widget.note.color = kColors[index].value;
                 setState(() {});
               },
               child: ColorItem(
-                color: kColors[index],
+                color: colors[index],
                 isActive: currentIndex == index,
               ),
             ),
@@ -40,4 +47,6 @@ class _ColorsListViewState extends State<ColorsListView> {
       ),
     );
   }
+  
+
 }
