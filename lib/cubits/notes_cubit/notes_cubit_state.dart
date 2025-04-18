@@ -11,8 +11,4 @@ sealed class NotesCubitState extends Equatable {
 class NotesInitial extends NotesCubitState {}
 
 class NoteSuccess extends NotesCubitState {
-  List<NoteModel> notes;
-  NoteSuccess({
-    required this.notes,
-  });
 }
